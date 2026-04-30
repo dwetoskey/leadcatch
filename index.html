@@ -1,1 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agency Lead Catch</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
+    <h1>The Great Lead Catch</h1>
+
+    <div id="game-container">
+        <div id="start-menu" class="ui-layer">
+            <h2>Select Your Character</h2>
+            <div id="staff-list">
+                <button onclick="startGame('Dustin', 'm')">Dustin</button>
+                <button onclick="startGame('Kieran', 'm')">Kieran</button>
+                <button onclick="startGame('Samantha', 'f')">Samantha</button>
+                </div>
+        </div>
+
+        <div id="game-over" class="ui-layer hidden">
+            <h2>Game Over!</h2>
+            <p id="final-score-display"></p>
+            <table id="leaderboard">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Name</th>
+                        <th>Leads</th>
+                    </tr>
+                </thead>
+                <tbody id="leaderboard-body">
+                    </tbody>
+            </table>
+            <br>
+            <button onclick="location.reload()">Play Again</button>
+        </div>
+
+        <canvas id="gameCanvas" width="600" height="500"></canvas>
+    </div>
+
+    <div class="footer">
+        © 2026 The David Wetoskey Agency | Catch those leads!
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-database.js"></script>
+    
+    <script src="game.js"></script>
+
+    <script>
+        // Simple bridge to start the game.js logic
+        function startGame(name, gender) {
+            document.getElementById('start-menu').classList.add('hidden');
+            
+            // Initialize player settings in game.js
+            player.name = name;
+            player.gender = gender;
+            player.head = new Image();
+            player.head.src = `assets/${name.toLowerCase()}.png`;
+            
+            // Start the game loop defined in game.js
+            gameActive = true;
+            draw(); 
+        }
+    </script>
+</body>
+</html>
